@@ -7,12 +7,14 @@ require('dotenv/config');
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.json());
 
-//import routes
+//import routes post
 const postsRoute = require('./routes/posts');
-
 app.use('/posts', postsRoute);
 
+const authRoute = require('./routes/auth');
+app.use('/user', authRoute);
 
 //Routes
 app.get('/', (req, res) => {

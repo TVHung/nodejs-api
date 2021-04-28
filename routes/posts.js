@@ -1,17 +1,32 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
+const verify = require('./verifyToken');
+
+
+
+router.get('/', verify, async (req, res) => {
+    res.send(req.user);
+
+    //example
+    // res.json({
+    //     posts: {
+    //         title: 'This is my first post',
+    //         description: 'Ramdom description'
+    //     }
+    // });
+});
 
 
 //get back all the posts
-router.get('/', async (req, res) => {
-    try{
-        const posts = await Post.find();
-        console.log(posts);
-    }catch(err){
-        res.json({message: err});
-    }
-});
+// router.get('/', async (req, res) => {
+//     try{
+//         const posts = await Post.find();
+//         console.log(posts);
+//     }catch(err){
+//         res.json({message: err});
+//     }
+// });
 
 
 //submit a post
@@ -27,7 +42,6 @@ router.post('/', async (req, res) => {
     }catch(err){
         res.json({message: err});
     }
-    
 });
 
 
