@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const port = 3000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -12,7 +13,6 @@ app.use(express.json());
 //import routes post
 const postsRoute = require('./routes/posts');
 app.use('/posts', postsRoute);
-
 const authRoute = require('./routes/auth');
 app.use('/user', authRoute);
 
@@ -30,4 +30,4 @@ mongoose.connect(
 });
 
 //how to we start listening to server
-app.listen(3000);
+app.listen(port);
